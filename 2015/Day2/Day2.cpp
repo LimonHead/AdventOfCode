@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <numeric>
 
 std::vector<std::string> ParseByDelimiter(std::string input, char delimiter)
 {
@@ -76,7 +77,18 @@ int main()
 
 	int result_2{ 0 };
 
+	for (std::string s : input)
+	{
+		std::vector<std::string> split_string{ ParseByDelimiter(s, 'x') };
+		std::vector<int> dimensions{ std::stoi(split_string[0]), std::stoi(split_string[1]), std::stoi(split_string[2]) };
+		std::vector<int> perimeters{ 2 * (dimensions[0] + dimensions[1]),
+									 2 * (dimensions[0] + dimensions[2]),
+									 2 * (dimensions[1] + dimensions[2]) };
 
+		int volume{ dimensions[0] * dimensions[1] * dimensions[2] };
+
+		result_2 += *std::min_element(perimeters.begin(), perimeters.end()) + volume;
+	}
 
 	std::cout << "Part 2: " << result_2 << '\n';
 
