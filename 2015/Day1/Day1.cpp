@@ -37,7 +37,7 @@ int main()
         if (floor < 0) break;
     }
 
-    std::cout << "Part 1: " << result2 << '\n';
+    std::cout << "Part 2: " << result2 << '\n';
 
 
 
